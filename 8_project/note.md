@@ -2,4 +2,4 @@ Use ref's component would be uncontrolled components
 
 - Why uncontrolled?
 
-* Because there internal state, the value inflect in them is not controlled by react.
+* Because there are internal state, the value inflects in them is not controlled by react.
