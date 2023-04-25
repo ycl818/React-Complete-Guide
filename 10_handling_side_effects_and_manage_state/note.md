@@ -17,6 +17,13 @@
   - front function: A function that should be executed AFTER every component evaluation IF the specified dependencies changed
   - Your side effect code goes into this function
   - Dependencies of this effect, the function only runs if the dependencies changed, specify your dependencies of your function here
+  -
+  - You DON'T need to add state updating functions; React guarantees that those functions never change, hence you don't need to add them as dependencies (you could though)
+  - You also DON'T need to add "built-in" APIs or functions like fetch(), localStorage etc (functions and features built-into the browser and hence available globally): These browser APIs / global functions are not related to the React component render cycle and they also never change
+  - You also DON'T need to add variables or functions you might've defined OUTSIDE of your components (e.g. if you create a new helper function in a separate file): Such functions or variables also are not created inside of a component function and hence changing them won't affect your components (components won't be re-evaluated if such variables or functions change and vice-versa)
 
 * Managing more Complex State with Reducers
+  - Sometimes, you have **more complex state** - for example if it got **multiple states, multiple ways of changing** it or **dependencies** to other states
+  - useState() then often **becomes hard or error-prone to use** - it's easy to write bad, inefficient or buggy code in such scenarios
+  - useReducer() can be used as a **replacement** for useState() if you need \*\*more powerful state management
 * Managing App-Wide or Component-Wide State with Context
