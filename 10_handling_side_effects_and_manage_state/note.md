@@ -30,3 +30,4 @@
 
 * Managing App-Wide or Component-Wide State with Context
   - Component-wide, "behind-the-scenes" State Storage
+  - useContex
