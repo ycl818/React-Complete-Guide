@@ -30,4 +30,9 @@
 
 * Managing App-Wide or Component-Wide State with Context
   - Component-wide, "behind-the-scenes" State Storage
-  - useContex
+  - useContext
+  -
+* Context Limitations
+  - React Context is **Not optimized** for high frequency changes!
+  - React Context also **shouldn't be used to replace ALL** component communications and props
+  - Component should still be configurable via props and short "prop chain" might not need any replacement
