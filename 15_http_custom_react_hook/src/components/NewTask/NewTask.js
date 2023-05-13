@@ -7,13 +7,13 @@ import useHttp from "../../hooks/use-http";
 const NewTask = (props) => {
   const { isLoading, error, sendRequest: sendTaskRequest } = useHttp();
 
-  const enterTaskHandler = async (taskText) => {
-    const createTask = (takData) => {
-      const generatedId = takData.name; // firebase-specific => "name" contains generated id
-      const createdTask = { id: generatedId, text: taskText };
-      props.onAddTask(createdTask);
-    };
+  const createTask = (taskText, takData) => {
+    const generatedId = takData.name; // firebase-specific => "name" contains generated id
+    const createdTask = { id: generatedId, text: taskText };
+    props.onAddTask(createdTask);
+  };
 
+  const enterTaskHandler = async (taskText) => {
     sendTaskRequest(
       {
         url: "https://react-complete-guide-85a78-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json",
@@ -23,7 +23,7 @@ const NewTask = (props) => {
         },
         body: { text: taskText },
       },
-      createTask
+      createTask.bind(null, taskText)
     );
   };
 
