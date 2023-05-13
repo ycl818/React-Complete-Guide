@@ -7,21 +7,24 @@ import useHttp from "./hooks/use-http";
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  const transformTasks = useCallback((taskobj) => {
-    const loadedTasks = [];
-    for (const taskKey in taskobj) {
-      loadedTasks.push({ id: taskKey, text: taskobj[taskKey].text });
-    }
-    setTasks(loadedTasks);
-  }, []);
-
   //傳進去hook的值也要注意 在App rerender會重新create
-  const { isLoading, error, sendRequest: fetchTasks } = useHttp(transformTasks);
+  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   useEffect(() => {
-    fetchTasks({
-      url: "https://react-complete-guide-85a78-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json",
-    });
+    const transformTasks = (taskobj) => {
+      const loadedTasks = [];
+      for (const taskKey in taskobj) {
+        loadedTasks.push({ id: taskKey, text: taskobj[taskKey].text });
+      }
+      setTasks(loadedTasks);
+    };
+
+    fetchTasks(
+      {
+        url: "https://react-complete-guide-85a78-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json",
+      },
+      transformTasks
+    );
   }, [fetchTasks]);
 
   const taskAddHandler = (task) => {
