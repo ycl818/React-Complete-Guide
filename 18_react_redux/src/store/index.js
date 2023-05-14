@@ -11,6 +11,6 @@ const counterReducer = (state = { counter: 0 }, action) => {
   return state;
 };
 
-const store = createStore(); // wants a pointer at reducer
+const store = createStore(counterReducer); // wants a pointer at reducer
 
 export default store;
