@@ -1,4 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { authReducer } from "./slice/authSlice";
 
 const initialState = { counter: 0, showCounter: true };
 const counterSlice = createSlice({
@@ -23,7 +24,10 @@ const counterSlice = createSlice({
 const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
+    authentication: authReducer,
   },
 }); // wants a pointer at reducer
+
+export * from "./slice/authSlice";
 export const counterActions = counterSlice.actions;
 export default store;

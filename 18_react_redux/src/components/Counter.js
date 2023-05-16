@@ -6,11 +6,8 @@ import { counterActions } from "../store/index";
 const Counter = () => {
   const dispatch = useDispatch();
   const counter = useSelector((state) => {
-    console.log("🚀 ~ file: Counter.js:9 ~ counter ~ state:", state);
-
     return state.counter.counter;
   });
-  console.log("🚀 ~ file: Counter.js:9 ~ counter ~ counter:", counter);
 
   const show = useSelector((state) => state.counter.showCounter);
 
