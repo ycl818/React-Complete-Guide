@@ -7,17 +7,17 @@ import {
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 
-const routeDefinitions = createRoutesFromElements(
-  <Route>
-    <Route path="/" element={<Home />} />
-  </Route>
-);
+// const routeDefinitions = createRoutesFromElements(
+//   <Route>
+//     <Route path="/" element={<Home />} />
+//   </Route>
+// );
 
-const router = createBrowserRouter(routeDefinitions);
-// const router = createBrowserRouter([
-//   { path: "/", element: <Home /> },
-//   { path: "/products", element: <Products /> },
-// ]);
+//const router = createBrowserRouter(routeDefinitions);
+const router = createBrowserRouter([
+  { path: "/", element: <Home /> },
+  { path: "/products", element: <Products /> },
+]);
 
 function App() {
   return <RouterProvider router={router} />;
