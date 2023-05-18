@@ -17,7 +17,7 @@ const Products = () => {
         {PRODUCTS.map((prod) => {
           return (
             <li>
-              <Link to={`/products/${prod.id}`}>{prod.title}</Link>
+              <Link to={prod.id}>{prod.title}</Link>
             </li>
           );
         })}
