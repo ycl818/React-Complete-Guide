@@ -1,0 +1,49 @@
+html {
+    height: 100%;
+
+    /* background-color: #19233C; */
+}
+body {
+    min-height: 100%;
+    
+    overflow: auto;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+
+::-webkit-scrollbar {
+
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-button {
+
+    background: transparent;
+
+    border-radius: 4px;
+
+  }
+
+  ::-webkit-scrollbar-track-piece {
+
+    background: transparent;
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+
+    border-radius: 4px;
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    border: 1px solid slategrey;
+
+  }
+
+  ::-webkit-scrollbar-track {
+
+    box-shadow: transparent;
+  }
