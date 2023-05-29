@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import classes from './MainNavigation.module.css';
-import NewsletterSignup from './NewsletterSignup';
+import classes from "./MainNavigation.module.css";
+import NewsletterSignup from "./NewsletterSignup";
 
 function MainNavigation() {
   return (
@@ -37,6 +37,16 @@ function MainNavigation() {
               }
             >
               Newsletter
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/auth"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Authentication
             </NavLink>
           </li>
         </ul>
