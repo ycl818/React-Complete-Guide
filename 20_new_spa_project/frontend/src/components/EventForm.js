@@ -1,5 +1,7 @@
 import {
   Form,
+  json,
+  redirect,
   useActionData,
   useNavigate,
   useNavigation,
@@ -20,7 +22,7 @@ function EventForm({ method, event }) {
   }
 
   return (
-    <Form method="post" className={classes.form}>
+    <Form method={method} className={classes.form}>
       {data && data.errors && (
         <ul>
           {Object.values(data.errors).map((err) => (
@@ -34,7 +36,7 @@ function EventForm({ method, event }) {
           id="title"
           type="text"
           name="title"
-          // required
+          //required
           defaultValue={event ? event.title : ""}
         />
       </p>
@@ -81,3 +83,43 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+  const data = await request.formData();
+
+  const method = request.method;
+  console.log("🚀 ~ file: NewEventPage.js:13 ~ action ~ data:", data);
+
+  const eventData = {
+    title: data.get("title"),
+    image: data.get("image"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+  console.log("🚀 ~ file: NewEventPage.js:21 ~ action ~ eventData:", eventData);
+
+  let url = "http://localhost:8080/events";
+
+  if (method === "PATCH") {
+    const eventid = params.eventid;
+    url = "http://localhost:8080/events/" + eventid;
+  }
+
+  const response = await fetch(url, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(eventData),
+  });
+
+  if (response.status === 422) {
+    return response;
+  }
+
+  if (!response.ok) {
+    throw json({ message: "Could not save event." }, { status: 500 });
+  }
+
+  return redirect("/events");
+}
